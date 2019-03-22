@@ -22,20 +22,24 @@ namespace FileRewriter_Threading_
             
             if (File.Exists(ChoosedFile.Text))
             {
-                ResentFilesListBox.Items.Add(ChoosedFile.Text);
                 
-                if (CBReplaceAll.Checked)
+                if (!(OldItem.Text==null||OldItem.Text==NewItem.Text||NewItem.Text.Contains(OldItem.Text)))
                 {
-                    RewriteFile(ChoosedFile.Text, OldItem.Text, NewItem.Text, Replacer.ReplaceAllStrings);
+                    if (CBReplaceAll.Checked)
+                    {
+                        RewriteFile(ChoosedFile.Text, OldItem.Text, NewItem.Text, Replacer.ReplaceAllStrings);
+                    }
+                    else if (CBReplaceWords.Checked)
+                    {
+                        RewriteFile(ChoosedFile.Text, OldItem.Text, NewItem.Text, Replacer.ReplaceWords);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please, choose prorerties");
+                    }
+                    ResentFilesListBox.Items.Add(ChoosedFile.Text);
                 }
-                else if (CBReplaceWords.Checked)
-                {
-                    RewriteFile(ChoosedFile.Text, OldItem.Text, NewItem.Text, Replacer.ReplaceWords);
-                }
-                else
-                {
-                    MessageBox.Show("Please, choose prorerties");
-                }
+                else MessageBox.Show("Something wrong with words");
                 
             }
             else MessageBox.Show("Oops, " + ChoosedFile.Text + " not found");

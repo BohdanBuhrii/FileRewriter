@@ -6,6 +6,8 @@ namespace FileRewriter_Threading_
 {
     static class Loger
     {
+        //static class
+
         private static readonly string pathToLogFile = @"D:\USERS\Buhrii_B\C#\Навчальна практика\FileRewriter\_Programs which work\logs.txt";
         private static StreamWriter logStream;
 
